@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI computer use agent</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="history-sidebar" id="historySidebar">
+        <div class="sidebar-header">
+          <h3>Chat History</h3>
+          <button class="new-chat-btn">
+            <i class="fa-solid fa-plus"></i>
+            New Chat
+          </button>
+        </div>
+        <div class="chats-list" id="chatsList">
+          <!-- Chats will be added here dynamically -->
+        </div>
+      </div>
+
+      <div class="chat-container">
+        <button
+          id="historyToggle"
+          class="history-toggle"
+          aria-label="Toggle History"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="settings-container">
+          <button
+            id="settingsButton"
+            class="settings-button"
+            aria-label="Settings"
+          >
+            <i class="fa-solid fa-gear"></i>
+          </button>
+          <div id="settingsMenu" class="settings-menu">
+            <div class="settings-header">Settings</div>
+            <div class="settings-item">
+              <span>Theme</span>
+              <button id="themeButton" class="theme-button">
+                <i class="fa-solid fa-moon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="messages-area" id="messagesArea"></div>
+        <div class="input-area">
+          <textarea
+            id="userInput"
+            placeholder="Ask agent to do something..."
+            rows="1"
+          ></textarea>
+          <button id="sendButton" class="send-button">
+            <i class="fa-solid fa-arrow-right send-icon"></i>
+            <div class="spinner-container">
+              <i class="fa-solid fa-square stop-icon"></i>
+              <div class="spinner"></div>
+            </div>
+          </button>
+        </div>
+        <div class="status-bar" id="statusBar">Ready</div>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+
+    <!-- Add Socket.IO client before other scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  </body>
+</html>

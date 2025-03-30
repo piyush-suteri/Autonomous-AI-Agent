@@ -1,0 +1,8 @@
+"parts" {
+  "text": "hello"
+}
+"role": "user"
+, "parts" {
+  "Hello! How can I help you today?\n"
+}
+"role": "model"

@@ -1,0 +1,34 @@
+2025-03-26 14:29:22,704 - [INFO] [CONFIG] Gemini configuration completed successfully
+2025-03-26 14:29:22,710 - [INFO] [CONFIG] Flask app created successfully
+2025-03-26 14:29:31,369 - [INFO] [DEBUG] Serving frontend from: e:\My space\Data\Projects\Code\Gemini_agent\src\frontend
+2025-03-26 14:29:32,096 - [INFO] [handle_connect()] Client connected
+2025-03-26 14:29:32,208 - [ERROR] [ERROR] Failed to serve favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-03-26 14:30:30,588 - [INFO] [chat_loop()] New chat created
+2025-03-26 14:30:33,895 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 14:30:33,900 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 14:30:54,538 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 14:30:54,541 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 14:31:14,896 - [INFO] [chat_loop()] New chat created
+2025-03-26 14:31:16,965 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 14:31:16,971 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 17:39:48,126 - [INFO] [CONFIG] Gemini configuration completed successfully
+2025-03-26 17:39:48,134 - [INFO] [CONFIG] Flask app created successfully
+2025-03-26 17:39:50,749 - [INFO] [DEBUG] Serving frontend from: e:\My space\Data\Projects\Code\Gemini_agent\src\frontend
+2025-03-26 17:39:51,646 - [INFO] [handle_connect()] Client connected
+2025-03-26 17:39:51,854 - [ERROR] [ERROR] Failed to serve favicon.ico: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-03-26 17:40:08,766 - [INFO] [chat_loop()] New chat created
+2025-03-26 17:40:12,366 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 17:40:12,374 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 17:40:12,377 - [INFO] [execute_python_code()] EXECUTING CODE
+2025-03-26 17:40:16,767 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 17:40:16,771 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 17:40:16,772 - [INFO] [execute_python_code()] EXECUTING CODE
+2025-03-26 17:40:20,106 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 17:40:20,109 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 17:41:23,796 - [INFO] [chat_loop()] New chat created
+2025-03-26 17:41:25,391 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 17:41:25,397 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 17:41:54,132 - [INFO] [chat_loop()] New chat created
+2025-03-26 17:41:56,378 - [INFO] [send()] Successfuly sent message to gemini
+2025-03-26 17:41:56,381 - [INFO] [chat_loop()] Successfuly recieved message from gemini
+2025-03-26 17:42:08,092 - [INFO] [handle_connect()] Client disconnected

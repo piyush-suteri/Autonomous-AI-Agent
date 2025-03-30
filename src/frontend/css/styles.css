@@ -1,0 +1,827 @@
+/* Theme Variables */
+:root {
+  /* Core colors */
+  --primary-color: #2196f3;
+  --primary-light: #e3f2fd;
+  --primary-dark: #1976d2;
+  
+  /* Background colors */
+  --bg-color: #f8f9fa;
+  --message-ai-bg: #ffffff;
+  --message-user-bg: var(--primary-light);
+  
+  /* Text colors */
+  --text-color: #333333;
+  --text-secondary: #666666;
+  
+  /* Effects */
+  --border-color: rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --blur-strength: 10px;
+  
+  /* Animation */
+  --transition: all 0.2s ease;
+  --hover-translate: translateY(-2px);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --primary-color: #075e54;
+  --bg-color: #111b21;
+  /* --chat-bg: #222e35; */
+  /* --message-user-bg: #005c4b; */
+  --message-ai-bg: #202c33;
+  --text-color: #fff;
+  /* --primary-color: #64b5f6; */
+  --primary-light: rgba(100, 181, 246, 0.15);
+  --primary-dark: #90caf9;
+  /* --bg-color: #1a1a1a; */
+  /* --message-ai-bg: #363636; Lighter shade for better contrast */
+  --message-user-bg: #1e3a5f;
+  /* --text-color: #e0e0e0; */
+  --text-secondary: #a0a0a0;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --code-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(0, 0, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Layout */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Chat container */
+.chat-container {
+  width: 100%;
+  max-width: 450px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--blur-strength));
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.settings-container {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1003; /* Above everything */
+}
+
+.settings-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.settings-button:hover {
+  background: var(--border-color);
+  transform: scale(1.1);
+}
+
+.settings-menu {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  width: 200px;
+  background: var(--message-ai-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  padding: 8px 0;
+  display: none;
+  animation: menuAppear 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.settings-menu.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.settings-header {
+  padding: 6px 16px;
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 4px;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  color: var(--text-color);
+  cursor: default;
+}
+
+.settings-item:hover {
+  background: var(--border-color);
+}
+
+.theme-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-button:hover {
+  background: var(--border-color);
+  transform: scale(1.1);
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.messages-area {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden; /* Add this to prevent horizontal scroll */
+  padding: 24px;
+  padding-top: 60px; /* Add space for theme toggle */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scroll-behavior: smooth;
+  width: 100%;
+  box-sizing: border-box; /* Add this to include padding in width calculation */
+  scroll-behavior: smooth;
+}
+
+.message {
+  max-width: 85%;
+  width: fit-content; /* Add this to allow natural width */
+  min-width: 50px; /* Add minimum width */
+  padding: 12px 16px;
+  transition: var(--transition);
+  animation: messageAppear 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box; /* Add this to include padding in width calculation */
+  position: relative;
+  transform-origin: bottom;
+  animation: messageScale 0.3s ease;
+}
+
+.message.ai {
+  align-self: flex-start;
+  background: var(--message-ai-bg);
+  border-bottom-left-radius: 4px;
+  backdrop-filter: blur(var(--blur-strength));
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.message.user {
+  align-self: flex-end;
+  background: var(--message-user-bg);
+  color: var(--text-color);
+  border-radius: 12px;
+  margin: 4px 0;
+  border: 1px solid var(--border-color);
+  border-bottom-right-radius: 4px;
+  box-shadow: var(--shadow-sm);
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+}
+
+/* Remove these bubble indicator styles */
+.message.ai::before,
+.message.user::before {
+  display: none;
+}
+
+/* Add Markdown styles */
+.message.ai p {
+  margin: 0 0 10px 0;
+}
+
+.message.ai p:last-child {
+  margin-bottom: 0;
+}
+
+.message.ai code {
+  font-family: "Consolas", monospace;
+  font-size: 13px;
+}
+
+.message.ai pre {
+  font-family: "Consolas", monospace;
+  font-size: 13px;
+}
+
+.message.ai pre code {
+  font-family: "Consolas", monospace;
+  font-size: 13px;
+}
+
+.message.ai ul,
+.message.ai ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.message:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Prism theme overrides */
+.message.ai .token.comment,
+.message.ai .token.prolog,
+.message.ai .token.doctype,
+.message.ai .token.cdata {
+  color: #666;
+}
+
+.message.ai .token.function,
+.message.ai .token.class-name {
+  color: #005cc5;
+}
+
+.message.ai .token.keyword {
+  color: #d73a49;
+}
+
+.message.ai .token.string {
+  color: #032f62;
+}
+
+.input-area {
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 12px;
+  background: var(--message-ai-bg);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+  align-items: flex-end; /* Align items to bottom */
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(var(--blur-strength));
+  background: var(--glass-bg);
+  border-top: 1px solid var(--glass-border);
+}
+
+textarea {
+  flex-grow: 1;
+  padding: 12px 16px;
+  min-height: 24px; /* Set minimum height */
+  height: 24px; /* Initial height */
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  resize: none;
+  max-height: 150px;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 24px; /* Match line height with min-height */
+  transition: var(--transition);
+  overflow-y: hidden; /* Hide scrollbar when not needed */
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-color);
+  color: var(--text-color);
+  backdrop-filter: blur(var(--blur-strength));
+  background: var(--glass-bg);
+  transition: all 0.3s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+  background: var(--message-ai-bg);
+  transform: var(--hover-translate);
+}
+
+textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+.send-button {
+  width: 40px;
+  height: 40px;
+  min-height: 40px; /* Prevent button from stretching */
+  border-radius: 20px;
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+  transform: scale(1);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.send-button:hover {
+  transform: scale(1.05);
+  background: var(--primary-dark);
+  transform: var(--hover-translate);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+.send-button:active {
+  transform: scale(0.95);
+}
+
+/* Add processing state styles */
+.send-button.processing {
+  background: var(--message-ai-bg);
+  border: 1px solid var(--border-color);
+}
+
+.send-button.processing .stop-icon {
+  color: var(--primary-color);
+}
+
+.send-icon {
+  font-size: 1.2em;
+  line-height: 40px;
+}
+
+.stop-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 0.9em;
+}
+
+.spinner-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.spinner {
+  border: 4px solid var(--primary-color);
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px var(--primary-color);
+  animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
+}
+
+.status-bar {
+  padding: 12px 16px;
+  background: var(--message-ai-bg);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  background: linear-gradient(to right, var(--message-ai-bg), var(--glass-bg));
+}
+
+.status-bar::before {
+  content: "•";
+  color: var(--primary-color);
+  font-size: 1.5em;
+  line-height: 0;
+  position: relative;
+  top: 1px;
+  margin-right: 8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Add new animations */
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes messageScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 15px var(--primary-color); }
+  50% { box-shadow: 0 0 25px var(--primary-color); }
+}
+
+/* Scrollbar styling */
+.messages-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages-area::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.messages-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Update code block styles */
+.message.ai pre {
+  background: #2d333b;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 8px 0;
+  overflow-x: auto;
+}
+
+.message.ai pre code {
+  text-shadow: none;
+  color: #e6edf3;
+  background: none;
+  padding: 0;
+}
+
+/* Enhanced code block styles */
+.message.ai pre {
+  background: #1e1e1e;  /* VS Code-like dark background */
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.message.ai pre code {
+  text-shadow: none;
+  color: #d4d4d4;  /* Base text color */
+  background: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+.message.ai code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #eb5757;  /* Inline code color */
+}
+
+/* Improved syntax highlighting */
+.message.ai .token.comment {
+  color: #6a9955;  /* Green comments */
+}
+
+.message.ai .token.keyword {
+  color: #569cd6;  /* Blue keywords */
+}
+
+.message.ai .token.string {
+  color: #ce9178;  /* Orange strings */
+}
+
+.message.ai .token.number {
+  color: #b5cea8;  /* Light green numbers */
+}
+
+.message.ai .token.boolean {
+  color: #569cd6;  /* Blue booleans */
+}
+
+.message.ai .token.function {
+  color: #dcdcaa;  /* Yellow functions */
+}
+
+.message.ai .token.property,
+.message.ai .token.class-name {
+  color: #4ec9b0;  /* Teal class names */
+}
+
+.message.ai .token.operator {
+  color: #d4d4d4;  /* Normal color for operators */
+  background: transparent;  /* Remove operator backgrounds */
+}
+
+/* Dark theme specific overrides */
+[data-theme="dark"] .message.ai pre {
+  background: #1e1e1e;  /* Consistent dark background */
+  border-color: #333;
+}
+
+[data-theme="dark"] .message.ai pre code {
+  color: #d4d4d4;
+}
+
+/* Add scrollbar styling for code blocks */
+.message.ai pre::-webkit-scrollbar {
+  height: 8px;
+  background-color: #1e1e1e;
+}
+
+.message.ai pre::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 4px;
+}
+
+.message.ai pre::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.message.ai code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  text-shadow: none;
+}
+
+/* Update dark theme code block styles */
+[data-theme="dark"] .message.ai pre {
+  background: #1f2428;
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .message.ai pre code {
+  color: #e6edf3;
+}
+
+/* Add syntax highlighting colors for dark theme */
+[data-theme="dark"] .message.ai .token.comment,
+[data-theme="dark"] .message.ai .token.prolog,
+[data-theme="dark"] .message.ai .token.doctype,
+[data-theme="dark"] .token.cdata {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .message.ai .token.function,
+[data-theme="dark"] .message.ai .token.class-name {
+  color: #79c0ff;
+}
+
+[data-theme="dark"] .message.ai .token.keyword {
+  color: #ff7b72;
+}
+
+[data-theme="dark"] .message.ai .token.string {
+  color: #a5d6ff;
+}
+
+/* Add styles for history sidebar */
+.app-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center; /* Center the chat container */
+  overflow: hidden; /* Add this to contain the sidebar */
+}
+
+.history-sidebar {
+  position: fixed; /* Change back to fixed */
+  left: -320px; /* Start offscreen */
+  top: 0;
+  width: 320px;
+  height: 100vh;
+  background: var(--message-ai-bg);
+  border-right: 1px solid var(--border-color);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+  animation: slideIn 0.3s ease;
+  backdrop-filter: blur(var(--blur-strength));
+  background: var(--glass-bg);
+  transition: transform 0.3s ease; /* Add transition for smooth sliding */
+}
+
+.history-sidebar.show {
+  display: flex;
+  transform: translateX(320px); /* Slide in */
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-color);
+  padding-left: 36px; /* Space for toggle button */
+}
+
+.history-toggle {
+  position: fixed; /* Change back to fixed */
+  left: 12px;
+  top: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border: none;
+  background: var(--message-ai-bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 1010; /* Ensure it's always above sidebar */
+  transition: transform 0.3s ease, left 0.3s ease;
+}
+
+/* Move toggle button when sidebar is open */
+.history-sidebar.show ~ .chat-container .history-toggle {
+  transform: translateX(320px); /* Move with sidebar instead of changing left */
+}
+
+/* Adjust chat container positioning */
+.chat-container {
+  width: 100%;
+  max-width: 450px; /* Change from fixed width to max-width */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--message-ai-bg);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  position: relative; /* Add this to contain child elements */
+  backdrop-filter: blur(var(--blur-strength));
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+/* Optional: Add smooth transition for chat container */
+.history-sidebar.show ~ .chat-container {
+  transform: none; /* Remove the shifting effect */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(320px);
+  }
+}
+
+.new-chat-btn {
+  width: 100%;
+  padding: 10px 12px; /* Increased padding */
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  font-size: 14px; /* Added explicit font size */
+}
+
+.new-chat-btn:hover {
+  background: var(--border-color);
+}
+
+.chats-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.chat-item {
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px; /* Increased margin */
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+  gap: 12px; /* Added gap between text and delete button */
+  transition: all 0.3s ease;
+}
+
+.chat-item span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-item:hover {
+  background: var(--border-color);
+  transform: var(--hover-translate);
+  background: var(--glass-bg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chat-item .delete-btn {
+  padding: 6px;
+  border-radius: 4px;
+  flex-shrink: 0; /* Prevent button from shrinking */
+  opacity: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chat-item:hover .delete-btn {
+  opacity: 1;
+}
+
+/* Add cool hover effects on interactive elements */
+.settings-button:hover,
+.history-toggle:hover {
+  transform: rotate(90deg) scale(1.1);
+}
