@@ -78,7 +78,7 @@ You should follow these scripting guidelines to obtain best results:
   "operating_system": "Windows 11",
   "windows_username": "piyus",
   "windows_drive": "C:\\",
-  "python_version": "3.10.8",
+  "python_version": "3.13",
   "user_installed_libraries": [
   "beautifulsoup4==4.8.2",
   "Flask==3.0.3",
@@ -130,7 +130,6 @@ You should follow these scripting guidelines to obtain best results:
   "browser": "Edge",
   "code_editor": "Visual Studio Code",
   "timezone": "UTC+5:30",
-  "currency": "INR",
   "other_application": "Windows deafult"
   },
   "shell_terminal": "Command Prompt",
