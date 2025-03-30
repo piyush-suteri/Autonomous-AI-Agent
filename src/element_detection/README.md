@@ -1,7 +1,6 @@
 ## Acknowledgements
 
 This project is based on the original work by [MulongXie](https://github.com/MulongXie/UIED). Modifications were made to improve image quality and add element labeling functionality for Gemini Vision.
-Here's an optimized version of your README file, along with answers to your questions:
 
 ### Project Overview
 
