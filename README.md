@@ -1,11 +1,11 @@
-# AI Agent
+# Autonomous AI Agent for Controlling Computer UI
 
 ![Screenshot 2025-03-14 210951](https://github.com/user-attachments/assets/0d1e4f54-99e4-4cf7-8550-683a9dcb8d8e)
 ![Screenshot 2025-03-14 211007](https://github.com/user-attachments/assets/ab625a4d-e07a-4edc-8f7d-e9a4e7e9a340)
 
 ## Overview
 
-AI Agent enables AI to interact with your computer on your behalf. Built with Python, Flask, and Gemini AI, it provides a user-friendly interface for AI-assisted computer control and automation.
+The Autonomous AI Agent enables AI to interact with your computer on your behalf. Built with Python, Flask, and Gemini AI, it provides a user-friendly interface for AI-assisted computer control and automation.
 
 ## Features
 
