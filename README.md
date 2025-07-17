@@ -24,7 +24,7 @@ The Autonomous AI Agent enables AI to interact with your computer on your behalf
 ### Prerequisites
 
 - Python 3.8+
-- Windows OS (Currently only supports Windows)
+- Windows OS (Recommended)
 
 ### Setup
 
