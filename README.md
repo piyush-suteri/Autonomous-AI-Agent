@@ -123,4 +123,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Connect
 
 - YouTube: [@piyushsuteri](https://youtube.com/@piyushsuteri)
+- LinkedIn: [Piyush Suteri](https://www.linkedin.com/in/piyush-suteri/)
 - GitHub: [piyush-suteri](https://github.com/piyush-suteri) 
