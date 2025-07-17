@@ -30,7 +30,7 @@ The Autonomous AI Agent enables AI to interact with your computer on your behalf
 
 1. Clone the repository:
    ```powershell
-   git clone https://github.com/piyush-suteri/ai_agent.git
+   git clone https://github.com/piyush-suteri/Autonomous-AI-Agent.git
    cd ai_agent
    ```
 
