@@ -17,7 +17,9 @@ The Autonomous AI Agent enables AI to interact with your computer on your behalf
 
 ## Demo
 
+<br/><br/>
 [![Watch the demo](https://img.youtube.com/vi/nmJ8wzfnIcc/maxresdefault.jpg)](https://youtu.be/nmJ8wzfnIcc)
+<br/><br/>
 
 ## Installation
 
